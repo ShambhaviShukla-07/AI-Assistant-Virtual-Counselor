@@ -17,7 +17,7 @@ exports.generateAIReply = async (setting,studentMessage)=>{
             const response = await axios.post("https://openrouter.ai/api/v1/chat/completions",
                 {
                     model:process.env.AI_MODEL,
-                    message:[
+                    messages:[
                         {
                         role:"user",
                         content:finalPrompt
