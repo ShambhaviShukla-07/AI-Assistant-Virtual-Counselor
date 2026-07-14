@@ -3,7 +3,9 @@ import { io } from "socket.io-client";
 import QRCode from "react-qr-code";
 import API from "../api/api";
 
-const socket = io("http://localhost:5000");
+const socket = io(import.meta.env.VITE_API_URL, {
+  transports: ["websocket"],
+});
 
 function WhatsAppConnect() {
   const [qr, setQr] = useState("");

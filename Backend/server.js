@@ -13,19 +13,27 @@ connectDB();
 
 const app=express();
 const server = http.createServer(app);
-const io= new Server(server, {
-    cors:{
-        origin:"http://localhost:5173",
-        methods:["GET","POST"]
-    }
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://ai-assistant-virtual-counselor.vercel.app",
+];
+
+
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
 });
 
 app.set("io",io);
 app.use(
-    cors({
-        origin:"http://localhost:5173",
-        credentials:true
-    })
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
 );
 
 app.use(express.json());
